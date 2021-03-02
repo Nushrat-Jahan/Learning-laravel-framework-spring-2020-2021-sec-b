@@ -10,6 +10,9 @@ use App\Http\Requests\UserRequest;
 class HomeController extends Controller
 {
     public function index( UserRequest $req){
+        return view('registration.index');
+    }
+    public function verify( UserRequest $req){
 
         $user = new User();
         $user->fullname         = $req->fullname;
@@ -21,7 +24,7 @@ class HomeController extends Controller
         $user->companyname      = $req->companyname;
         $user->pnumber          = $req->pnumber;
         $user->type             = "active";
-        $user->date_added       = "current_date";
+        $user->date_added       = date('Y-m-d');;
         $user->last_update      = "null";
         $user->city             = $req->city;
         $user->country          = $req->country;
