@@ -14,12 +14,11 @@ class HomeController extends Controller
     }
     public function verify( UserRequest $req){
 
-        $user = new User();
+        $user = new Customer();
         $user->fullname         = $req->fullname;
         $user->username         = $req->username;
         $user->email            = $req->email;
         $user->password         = $req->password;
-        //$user->confirmpassword  = $req->confirmpassword;
         $user->address          = $req->address;
         $user->companyname      = $req->companyname;
         $user->pnumber          = $req->pnumber;
@@ -29,7 +28,8 @@ class HomeController extends Controller
         $user->city             = $req->city;
         $user->country          = $req->country;
         $user->save();
-        return redirect()->route('home.userlist');
+        $req->session()->flash('msg','Account created successfully!');
+        return redirect()->route('login');
     }
 
 }

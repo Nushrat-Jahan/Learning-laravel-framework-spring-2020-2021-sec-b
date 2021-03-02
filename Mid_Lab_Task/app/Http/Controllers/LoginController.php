@@ -49,24 +49,28 @@ class LoginController extends Controller
 
            $req->session()->put('email', $req->email);
            $req->session()->put('utype', "customer");
-            return redirect('/home');
+           $req->session()->put('username', $Cuser->username);
+           return view('user.customer');
         }
         elseif(count($Auser)>0){
 
             $req->session()->put('email', $req->email);
             $req->session()->put('utype', "admin");
-             return redirect('/home');
-         }
+            $req->session()->put('username', $Auser->username);
+            return redirect('user.admin');
+        }
         elseif(count($Vuser)>0){
 
             $req->session()->put('email', $req->email);
             $req->session()->put('utype', "vendor");
-             return redirect('/home');
-         }
-         elseif(count($Accuser)>0){
+            $req->session()->put('username', $Vuser->username);
+            return redirect('user.vendor');
+        }
+        elseif(count($Accuser)>0){
             $req->session()->put('email', $req->email);
             $req->session()->put('utype', "accountant");
-             return redirect('/home');
+            $req->session()->put('username', $Accuser->username);
+            return redirect('user.accountant');
          }
         else{
 

@@ -22,7 +22,11 @@
 				<tr>
 					<td><input type="submit" name="submit" value="Submit"></td>
 					<td></td>
-				</tr>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a href="\registration">Not registered yet?</td>
+                </tr>
 			</table>
 		</fieldset>
 	</form>
