@@ -5,12 +5,12 @@ use Illuminate\Http\Request;
 use App\Customer;
 use Illuminate\Support\Facades\DB;
 
-class RegistrationController extends Controller
+class LoginController extends Controller
 {
 
     public function index(){
 
-        return view('registration.index');
+        return view('login.index');
     }
 
     public function verify(Request $req){
