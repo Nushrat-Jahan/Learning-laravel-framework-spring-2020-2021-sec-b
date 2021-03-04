@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreSellRequest;
 use Illuminate\Http\Request;
 use App\PhysicalStore;
 use App\Ecommerce;
@@ -28,6 +29,10 @@ class SalesController extends Controller
 
         return view('sales.ecommerce');
     }
+    public function salesLog(){
+
+        return view('sales.salesLog');
+    }
     public function physicalStore7day()
     {
         $list = $this->sale7day();
@@ -46,7 +51,8 @@ class SalesController extends Controller
 
         $monthavg = $monthsum/intval(date('d'));
 
-        $physicalStore7day = ['pday'=>$list['pday'],'p7day'=>$list['p7day'],'bestProduct'=>$bestProduct->productName,'avg'=>$monthavg];
+        $physicalStore7day = ['pday'=>$list['pday'],'p7day'=>$list['p7day'],
+                              'bestProduct'=>$bestProduct->productName,'avg'=>$monthavg];
 
         return $physicalStore7day;
     }
@@ -75,9 +81,32 @@ class SalesController extends Controller
         $sday = SocialMedia::where('sold_date','=',$now)->sum('quantity');
         $eday = Ecommerce::where('sold_date','=',$now)->sum('quantity');
 
-        $sell7daydata = ['pday'=> $pday , 'p7day' => $p7day ,'eday'=>$eday , 'e7day'=>$e7day , 'sday'=>$sday, 's7day'=>$s7day];
+        $sell7daydata = ['pday'=> $pday , 'p7day' => $p7day ,'eday'=>$eday ,
+                        'e7day'=>$e7day , 'sday'=>$sday, 's7day'=>$s7day];
 
         return $sell7daydata;
+    }
+
+    public function pStoreVerify(StoreSellRequest $req)
+    {
+
+        $store = new PhysicalStore;
+        $store->customerName = $req->customerName;
+        $store->address = $req->address;
+        $store->phone = $req->phone;
+        $store->productId = $req->productId;
+        $store->productName = $req->productName;
+        $store->unitPrice = $req->unitPrice;
+        $store->quantity = $req->quantity;
+        $store->total = $req->total;
+        $store->sold_date = date('Y-m-d');
+        $store->payType = $req->payType;
+        $store->status = 'sold';
+        $store->save();
+
+        $req->session()->flash('msg',"Data added sucessfully");
+
+        return Back();
     }
 }
 

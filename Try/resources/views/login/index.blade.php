@@ -4,7 +4,7 @@
 	<title>Login page</title>
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body style="margin-top:10%">
 	<h1 align="center">Login Page</h1>
 
 	<form method="post">

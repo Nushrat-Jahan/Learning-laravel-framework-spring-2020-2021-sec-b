@@ -18,7 +18,7 @@
                             <tr><td><h3> Current Date Count </h3></td>
                                 <td><h3> Last 7 Days Count </h3></td>
                             </tr>
-                            <tr><td>{{$ilist['pday']}}</td>
+                            <tr><td>{{$list['pday']}}</td>
                                 <td>{{$list['p7day']}}</td>
                             </tr>
 
