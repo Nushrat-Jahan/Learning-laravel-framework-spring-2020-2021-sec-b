@@ -53,7 +53,7 @@ class LoginController extends Controller
             $req->session()->put('email', $user->email);
             $req->session()->put('usertype', $user->usertype);
             $req->session()->put('username', $user->username);
-            return redirect('/registration');
+            return redirect('/home');
         }
         elseif(count($Auser)>0){
 
@@ -61,7 +61,7 @@ class LoginController extends Controller
             $req->session()->put('email', $user->email);
             $req->session()->put('usertype', $user->usertype);
             $req->session()->put('username', $user->username);
-            return redirect('/registration');
+            return redirect('/home');
 
         }
         elseif(count($Vuser)>0){
@@ -70,7 +70,7 @@ class LoginController extends Controller
             $req->session()->put('email', $user->email);
             $req->session()->put('usertype', $user->usertype);
             $req->session()->put('username', $user->username);
-            return redirect('/registration');
+            return redirect('/home');
         }
         elseif(count($Accuser)>0){
 
@@ -78,7 +78,7 @@ class LoginController extends Controller
             $req->session()->put('email', $user->email);
             $req->session()->put('usertype', $user->usertype);
             $req->session()->put('username', $user->username);
-            return redirect('/registration');
+            return redirect('/home');
         }
         else{
 
