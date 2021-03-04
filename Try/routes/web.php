@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 Route::get('/registration', 'RegistrationController@index')->name('registration');
 Route::get('/login', 'LoginController@index')->name('login');
+Route::post('/login', 'LoginController@verify');
 Route::get('/logout', 'LogoutController@index')->name('logout');
 

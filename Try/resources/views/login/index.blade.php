@@ -13,11 +13,11 @@
 			<table>
 				<tr>
 					<td>Email</td>
-					<td><input type="text" name="email"></td>
+					<td><input type="text" name="email" value=""></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="password" name="password"></td>
+					<td><input type="password" name="password" value=""></td>
 				</tr>
 				<tr>
                     <td></td>
@@ -31,5 +31,6 @@
 			</table>
 		</fieldset>
 	</form>
+    {{session('msg')}}
 </body>
 </html>
