@@ -2,15 +2,18 @@
 <html>
 <head>
 	<title>Login page</title>
+    <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-	<h1>Login Page</h1>
+	<h1 align="center">Login Page</h1>
 
 	<form method="post">
-
+        @foreach ($errors->all() as $err)
+        <p style="color:red">{{$err}}</p>
+        @endforeach
 		<fieldset>
-			<legend>Login</legend>
-			<table>
+
+			<table align="center">
 				<tr>
 					<td>Email</td>
 					<td><input type="text" name="email" value=""></td>

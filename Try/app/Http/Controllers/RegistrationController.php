@@ -14,7 +14,7 @@ class RegistrationController extends Controller
         return view('registration.index');
     }
 
-    public function verify(RegistrationRequest $req){
+    public function verify(Request $req){
         $user = new Customer();
         $user->fullname         = $req->fullname;
         $user->username         = $req->username;
@@ -23,9 +23,7 @@ class RegistrationController extends Controller
         $user->address          = $req->address;
         $user->companyname      = $req->companyname;
         $user->pnumber          = $req->pnumber;
-        $user->type             = "active";
-        $user->date_added       = date('Y-m-d');;
-        $user->last_update      = "null";
+        $user->user_type             = "active";
         $user->city             = $req->city;
         $user->country          = $req->country;
         $user->save();

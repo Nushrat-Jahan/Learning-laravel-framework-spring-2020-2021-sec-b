@@ -25,8 +25,9 @@ class RegistrationRequest extends FormRequest
     {
         return [
             'fullname' => 'required|alpha|min:3|max:30',
+            'username' => 'required|unique:customers',
             'email' => 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix
-            |required|unique:users_table|max:50|min:10',
+            |required|unique:customers|max:50|min:10',
             'password' => 'required|alpha_num|min:8|max:20',
             'city' => 'required|min:3|max:20',
             'country' => 'required|min:3|max:20',

@@ -51,7 +51,7 @@ class LoginController extends Controller
 
             $user = Customer::find($req->email);
             $req->session()->put('email', $user->email);
-            $req->session()->put('usertype', $user->usertype);
+            $req->session()->put('usertype', 'customer');
             $req->session()->put('username', $user->username);
             return redirect('/home');
         }
@@ -59,7 +59,7 @@ class LoginController extends Controller
 
             $user = Admin::find($req->email);
             $req->session()->put('email', $user->email);
-            $req->session()->put('usertype', $user->usertype);
+            $req->session()->put('usertype', 'admin');
             $req->session()->put('username', $user->username);
             return redirect('/home');
 
@@ -68,7 +68,7 @@ class LoginController extends Controller
 
             $user = Vendor::find($req->email);
             $req->session()->put('email', $user->email);
-            $req->session()->put('usertype', $user->usertype);
+            $req->session()->put('usertype', 'vendor');
             $req->session()->put('username', $user->username);
             return redirect('/home');
         }
@@ -76,7 +76,7 @@ class LoginController extends Controller
 
             $user = Accountant::find($req->email);
             $req->session()->put('email', $user->email);
-            $req->session()->put('usertype', $user->usertype);
+            $req->session()->put('usertype', 'accountant');
             $req->session()->put('username', $user->username);
             return redirect('/home');
         }

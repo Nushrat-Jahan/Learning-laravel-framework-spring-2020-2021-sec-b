@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Customer extends Model
 {
-    /*
-    const $CREATED_AT = "Create_Time";
-    const UPDATED_AT = "Update_Time";
-    */
+
+    const CREATED_AT = "date_added";
+    const UPDATED_AT = "last_updated";
+
     protected $table = 'customers';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'username';
 }
