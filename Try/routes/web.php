@@ -21,4 +21,8 @@ Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@verify');
 Route::get('/logout', 'LogoutController@index')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/system/sales', 'SalesController@index')->name('sales.index');
+Route::get('/system/sales/physical_store', 'SalesController@physicalStore')->name('sales.physicalStore');
+Route::get('/system/sales/social_media', 'SalesController@socialMedia')->name('sales.socialMedia');
+Route::get('/system/sales/ecommerce', 'SalesController@ecommerce')->name('sales.ecommerce');
 

@@ -18,7 +18,7 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function verify(Request $req){
+    public function verify(LoginRequest $req){
 
 
         $Cuser = DB::table('customers')

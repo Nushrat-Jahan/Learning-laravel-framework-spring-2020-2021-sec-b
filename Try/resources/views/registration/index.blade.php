@@ -57,10 +57,12 @@
 					<td><input type="text" name="country" value="{{old('country')}}"></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td><input type="submit" name="submit" value="Sign up"></td>
+                    <td></td>
+					<td><input type="submit" name="submit" value="Sign up">
+                    <a href="{{route('login')}}" ><button  type="button" class="btn btn-default">Back</button></a></td>
 				</tr>
 			</table>
+
 		</fieldset>
 
 	</form>
