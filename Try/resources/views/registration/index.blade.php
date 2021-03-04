@@ -46,17 +46,6 @@
 					<td><input type="text" name="pnumber" value="{{old('pnumber')}}"></td>
 				</tr>
                 <tr>
-					<td>Type</td>
-					<td>
-                        <select name='type'>
-                            <option value="admin">ADMIN</option>
-                            <option value="customer">CUSTOMER</option>
-                            <option value="vendor">VENDOR</option>
-                            <option value="salesman">SALESMAN</option>
-                        </select>
-                    </td>
-				</tr>
-                <tr>
 					<td>City</td>
 					<td><input type="text" name="city" value="{{old('city')}}"></td>
                 </tr>
