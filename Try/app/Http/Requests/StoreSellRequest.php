@@ -25,14 +25,14 @@ class StoreSellRequest extends FormRequest
     {
         return [
 
-            'customerName' => 'required|alpha|min:3|max:30',
+            'cname' => 'required|alpha|min:3|max:30',
             'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
             'phone' => 'required|numeric|min:11|max:15',
-            'productName' => 'required',
-            'productId' => 'required',
-            'unitPrice' => 'required|numeric|min:1',
+            'productname' => 'required',
+            'productid' => 'required',
+            'unitprice' => 'required|numeric|min:1',
             'quantity' => 'required|numeric|max:20|min:1',
-            'total' => 'required|numeric|min:1',
+            'tprice' => 'required|numeric|min:1',
             'payType' => 'required'
         ];
     }

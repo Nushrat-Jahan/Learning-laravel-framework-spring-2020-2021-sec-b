@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreSellRequest;
+use App\Http\Requests\FileRequest;
+use App\Exports\PhysicalStoreExport;
+use App\Exports\PhysicalStorePending;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
+use App\Imports\pStoreSoldImport;
 use Illuminate\Http\Request;
 use App\PhysicalStore;
 use App\Ecommerce;
@@ -91,22 +96,37 @@ class SalesController extends Controller
     {
 
         $store = new PhysicalStore;
-        $store->customerName = $req->customerName;
+        $store->customerName = $req->cname;
         $store->address = $req->address;
         $store->phone = $req->phone;
-        $store->productId = $req->productId;
-        $store->productName = $req->productName;
-        $store->unitPrice = $req->unitPrice;
+        $store->productId = $req->productid;
+        $store->productName = $req->productname;
+        $store->unitPrice = $req->unitprice;
         $store->quantity = $req->quantity;
-        $store->total = $req->total;
+        $store->total = $req->tprice;
         $store->sold_date = date('Y-m-d');
         $store->payType = $req->payType;
         $store->status = 'sold';
         $store->save();
-
         $req->session()->flash('msg',"Data added sucessfully");
-
         return Back();
+    }
+    public function salesLogDownloadSold(Request $req){
+        $name = time().'.xlsx';
+        return Excel::download(new PhysicalStoreExport,$name);
+        //return redirect()->route('sales.salesLog');
+    }
+    public function salesLogDownloadPending(Request $req){
+        $name = time().'.xlsx';
+        return Excel::download(new PhysicalStorePending,$name);
+
+    }
+
+    public function import(FileRequest $req)
+    {
+        Excel::import(new pStoreSoldImport, $req->file);
+        session()->flash('msg','Upload sucessful');
+        return redirect()->route('sales.salesLog');
     }
 }
 

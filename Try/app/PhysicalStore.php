@@ -11,5 +11,16 @@ class PhysicalStore extends Model
 
     protected $table = 'physical_store_channel';
     public $timestamps = true;
-    protected $primaryKey = 'productId';
+    protected $primaryKey = 'id';
+
+    protected $fillable = array("customerName",
+    "address", "phone",
+    "productId",
+    "productName" ,
+    "unitPrice",
+    "quantity",
+    "total",
+    "sold_date",
+    "payType",
+    "status");
 }
