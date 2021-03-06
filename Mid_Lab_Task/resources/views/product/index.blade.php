@@ -7,23 +7,24 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Existing Product</title>
 </head>
-<body >
-    <form>
-        <table align="center">
-            <tr>
-                <td><a href="{{route('product.index')}}"   ><button class="btn btn-danger" style="margin:10px" >Home             </button></a></td>
-                <td><a href="{{route('product.existing')}}"><button class="btn btn-danger" style="margin:10px">Existing Products</button></a></td>
-                <td><a href="{{route('product.upcoming')}}"><button class="btn btn-danger" style="margin:10px">Upcoming Products</button></a></td>
-                <td><a href="{{route('product.add')}}"     ><button class="btn btn-danger" style="margin:10px">Add Products     </button></a></td>
-            </tr>
-        <table>
-            <div style="margin-top:15px">
-            <h1 align="center" padding="20px">PRODUCT INFORMATION</h1><br><br>
+<body style="margin-top:2%">
+    <div align="center">
+
+        <a href="{{route('product.index')}}"   ><button class="btn btn-danger" style="margin:2px">Product Home             </button></a>
+        <a href="{{route('product.existing')}}"><button class="btn btn-danger" style="margin:2px">Existing Products</button></a>
+        <a href="{{route('product.upcoming')}}"><button class="btn btn-danger" style="margin:2px">Upcoming Products</button></a>
+        <a href="{{route('product.add')}}"     ><button class="btn btn-danger" style="margin:2px">Add Products     </button></a>
+        <br>
+        <a href="javascript:history.back()"     ><button class="btn btn-danger" style="margin:2px">Back    </button></a>
+        <a href="{{route('logout')}}"     ><button class="btn btn-danger" style="margin:2px">Log out     </button></a>
+
+    </div>
+        <div style="margin-top:15px">
+            <h2 align="center" padding="20px"> PRODUCT INFORMATION</h2><br><br>
             <h3 align="center">Existing Products : {{$list['existing']}}</h3>
             <h3 align="center">Upcoming Products : {{$list['upcoming']}}</h3>
-            </div>
-    <form>
+        </div>
 </body>
 </html>

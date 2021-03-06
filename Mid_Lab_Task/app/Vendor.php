@@ -11,5 +11,5 @@ class Vendor extends Model
 
     protected $table = 'vendors';
     public $timestamps = true;
-    protected $primaryKey = 'email';
+    protected $primaryKey = 'vendor_id';
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +22,8 @@ class ProductController extends Controller
     }
     public function existing()
     {
+        //$list = $this->productExist();
+        //return view('product.existing')->with('list',$list);
         return view('product.existing');
     }
     public function upcoming()
@@ -29,7 +32,11 @@ class ProductController extends Controller
     }
     public function add()
     {
-        return view('product.add');
+        $list = Vendor::select('vendor_name','vendor_id')
+                                ->distinct()
+                                ->get();
+
+        return view('product.add')->with('vendors', $list);
     }
     public function productCount()
     {
@@ -37,6 +44,11 @@ class ProductController extends Controller
         $upcoming = Product::where('status','=','upcoming')->sum('quantity');
         $productdata = ['existing'=> $existing, 'upcoming' => $upcoming];
         return $productdata;
+    }
+    public function productExist()
+    {
+        $data = Product::where('status','=','existing')->all();
+        return $data;
     }
     /**
      * Show the form for creating a new resource.

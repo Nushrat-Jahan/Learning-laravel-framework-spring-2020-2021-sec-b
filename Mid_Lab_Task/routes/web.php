@@ -37,7 +37,12 @@ Route::post('/system/sales/physical_store/sales_log', 'SalesController@import');
 Route::get('/system/sales/physical_store/sales_log/DownloadSold', 'SalesController@salesLogDownloadSold')->name('sales.salesLog.downloadSold');
 Route::get('/system/sales/physical_store/sales_log/DownloadPending', 'SalesController@salesLogDownloadPending')->name('sales.salesLog.downloadPending');
 
-Route::get('system/product_management','ProductController@index')->name('product.index');
+Route::get('system/product_management/','ProductController@index')->name('product.index');
+
 Route::get('system/product_management/existing_products','ProductController@existing')->name('product.existing');
+//Route::get('system/product_management/existing_products/edit/{id}','ProductController@existing')->name('product.existing.edit');
+//Route::get('system/product_management/existing_products/delete/{id}','ProductController@existing')->name('product.existing.delete');
+//Route::get('system/product_management/product/{product_id}/vendor_details/{vendor_id}','ProductController@existing')->name('product.existing');
+
 Route::get('system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
 Route::get('system/product_management/add_products','ProductController@add')->name('product.add');
