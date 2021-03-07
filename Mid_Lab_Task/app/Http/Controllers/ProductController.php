@@ -42,9 +42,24 @@ class ProductController extends Controller
         return view('product.existing')->with('list',$list);
 
     }
-    public function upcoming()
+    public function upcoming(Request $req)
     {
-        return view('product.upcoming');
+        $list =new Product();
+        $list = $list->where('status','upcoming');
+        if($req->sort){
+            if($req->sortType){
+                $list = $list->orderBy($req->sort,$req->sortType);
+            }
+            else{
+                $list = $list->orderBy($req->sort,'asc');
+            }
+            $list = $list->paginate(20)->appends(['sort'=>$req->sort]);
+        }
+        else{
+            $list = $list->paginate(20);
+
+        }
+        return view('product.upcoming')->with('list',$list);
     }
     public function add()
     {
