@@ -25,7 +25,10 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix
-            |required|max:50',
+            |required|max:50|unique:customers',
+            'email' => 'unique:vendors',
+            'email' => 'unique:accountants',
+            'email' => 'unique:admins',
             'password' => 'required|alpha_num|min:8|max:20',
         ];
     }

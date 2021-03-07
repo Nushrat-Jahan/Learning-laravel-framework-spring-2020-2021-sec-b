@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Vendor extends Model
+class Vendors extends Model
 {
     const CREATED_AT = "date_added";
     const UPDATED_AT = "last_updated";

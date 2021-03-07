@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\Vendor;
+use App\Vendors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\AddProductRequest;
 
 
 class ProductController extends Controller
@@ -32,11 +33,25 @@ class ProductController extends Controller
     }
     public function add()
     {
-        $list = Vendor::select('vendor_name','vendor_id')
+        $list = Vendors::select('vendor_name','vendor_id')
                                 ->distinct()
                                 ->get();
 
         return view('product.add')->with('vendors', $list);
+    }
+    public function addVerify(AddProductRequest $req)
+    {
+        $product= new Product;
+        $product->product_name = $req->pname;
+        $product->vendor_id = $req->vendor_id;
+        $product->quantity = $req->quantity;
+        $product->category = $req->category;
+        $product->unit_price = $req->unitPrice;
+        $product->status = $req->status;
+
+        $product->save();
+        $req->session()->flash('msg','Product added succefully!');
+        return redirect()->route('product.add');
     }
     public function productCount()
     {

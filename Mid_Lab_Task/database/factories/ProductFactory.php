@@ -11,7 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
     $quantity = $faker->numberBetween(1,20);
 
     return [
-        'vendor_id' => $faker->numberBetween(1,100),
+        'vendor_id' => $faker->numberBetween(1,10),
         'product_name' => $faker->randomElement(['Rosgolla', 'Sugar', 'Algorithm', 'Lipstick', 'Dairy MIlk', 'Straberry milkshake', 'Kinderjoy','Rohosso potrika']),
         'category' => $faker->randomElement(['Sweet', 'Grocery','Book', 'Makeup','Chocolate','Juice']),
         'unit_price' => $price,

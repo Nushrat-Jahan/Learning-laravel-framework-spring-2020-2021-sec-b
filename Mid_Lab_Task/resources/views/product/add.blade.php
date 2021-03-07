@@ -28,6 +28,7 @@
         @foreach ($errors->all() as $err)
                 <p style="color:red">{{$err}}</p>
             @endforeach
+        <form method="POST">
         <table align="center">
             <tr>
 				<th>Product name </th>
@@ -52,13 +53,17 @@
                 <td><input type="number" name="unitPrice" value="{{old('unitPrice')}}"></td>
             </tr>
             <tr>
+                <th>Quantity </th>
+                <td><input type="number" name="quantity" value="{{old('quantity')}}"></td>
+            </tr>
+            <tr>
                 <th>Vendor Name </th>
                 <td>
                     <select name="vendor_id" id="">
                         <option value="" selected>Select Vendor name</option>
                         @foreach($vendors as $vendor)
-                        <option value="{{$vendor->id}}" @if($vendor->id == old('vendor_id'))
-                            selected @endif> {{$vendor->full_name}} </option>
+                        <option value="{{$vendor->vendor_id}}" @if($vendor->vendor_id == old('vendor_id'))
+                            selected @endif> {{$vendor->vendor_name}} </option>
                         @endforeach
                     </select>
                 </td>
@@ -78,7 +83,12 @@
 				<td></td>
 				<td><button type="submit" name="submit" class="btn btn-success" style="margin:5px">Add Product</button></td>
 			</tr>
+                <td> {{session('msg')}}</td>
+            <tr>
+            </tr>
 		</table>
+        </form>
     </div>
+
 </body>
 </html>

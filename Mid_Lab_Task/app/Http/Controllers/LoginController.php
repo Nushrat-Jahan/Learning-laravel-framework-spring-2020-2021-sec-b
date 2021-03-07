@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Accountant;
 use App\Admin;
-use App\Vendor;
+use App\Vendors;
 use Validator;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\DB;
@@ -66,7 +66,7 @@ class LoginController extends Controller
         }
         elseif(count($Vuser)>0){
 
-            $user = Vendor::find($req->email);
+            $user = Vendors::find($req->email);
             $req->session()->put('email', $user->email);
             $req->session()->put('usertype', 'vendor');
             $req->session()->put('username', $user->username);
