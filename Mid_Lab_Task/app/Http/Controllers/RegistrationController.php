@@ -30,6 +30,5 @@ class RegistrationController extends Controller
         $req->session()->flash('msg','Account created successfully!');
         return redirect()->route('login');
 
-
     }
 }

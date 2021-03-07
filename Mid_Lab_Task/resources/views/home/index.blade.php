@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Welcome home! {{ session('username') }} </h1>
-    <a href="/logout">logout</a>
+    <a href="{{route('logout')}}"     ><button class="btn btn-danger" style="margin:2px">Log out</button></a>
     {{session('msg')}}
 </body>
 </html>

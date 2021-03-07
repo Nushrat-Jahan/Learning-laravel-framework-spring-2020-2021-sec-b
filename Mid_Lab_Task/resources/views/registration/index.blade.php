@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/app.css">
     <title>Registration</title>
 </head>
-<body>
+<body style="margin-top:8%">
     <h1 align="center">Registration</h1>
     @foreach ($errors->all() as $err)
         <p style="color:red" align="center">{{$err}}</p>
@@ -58,8 +58,8 @@
 				</tr>
 				<tr>
                     <td></td>
-					<td><input type="submit" name="submit" value="Sign up">
-                    <a href="{{route('login')}}" ><button  type="button" class="btn btn-default">Back</button></a></td>
+					<td><input class="btn btn-success" type="submit" name="submit" value="Sign up">
+                    <a href="{{route('login')}}" ><button  type="button" class="btn btn-outline-dark">Back</button></a></td>
 				</tr>
 			</table>
 

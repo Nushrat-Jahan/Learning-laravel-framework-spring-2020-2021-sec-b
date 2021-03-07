@@ -24,16 +24,16 @@
 				</tr>
 				<tr>
                     <td></td>
-					<td><input type="submit" name="submit" value="Submit"></td>
+					<td><input class="btn btn-primary" type="submit" name="submit" value="Submit"></td>
 					<td></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><a href="{{route('registration')}}">Not registered yet?</td>
+                    <td><a href="{{route('registration')}}" style="color:green">Not registered yet?</td>
                 </tr>
 			</table>
 		</fieldset>
 	</form>
-    {{session('msg')}}
+    <p align="center" style="color:red" >{{session('msg')}}</p>
 </body>
 </html>

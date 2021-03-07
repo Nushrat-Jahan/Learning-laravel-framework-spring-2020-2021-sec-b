@@ -61,7 +61,7 @@ class LoginController extends Controller
             $req->session()->put('email', $user->email);
             $req->session()->put('usertype', 'admin');
             $req->session()->put('username', $user->username);
-            return redirect('/home');
+            return view('home.admin');
 
         }
         elseif(count($Vuser)>0){

@@ -5,31 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/app.css">
-    <title>Physical Store</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Ecommerce Page</title>
 </head>
-<body>
-    <h1 align="center">PHYSICAL STORE SELL</h1>
-    <form method="post" enctype="multipart/form-data">
-			<table align="center">
+<body style="margin-top:2%">
+    <div align="center">
+
+        <a href="{{route('sales.index')}}"   ><button class="btn btn-danger" style="margin:2px">Sales Home             </button></a>
+        <a href="{{route('sales.physicalStore')}}"><button class="btn btn-danger" style="margin:2px">Physical Store</button></a>
+        <a href="{{route('sales.ecommerce')}}"><button class="btn btn-danger" style="margin:2px">Ecommerce</button></a>
+        <a href="{{route('sales.socialMedia')}}"     ><button class="btn btn-danger" style="margin:2px">Social Media    </button></a>
+        <br>
+        <a href="{{route('home.admin')}}"     ><button class="btn btn-danger" style="margin:2px">HOME   </button></a>
+        <a href="javascript:history.back()"     ><button class="btn btn-danger" style="margin:2px">Back    </button></a>
+        <a href="{{route('logout')}}"     ><button class="btn btn-danger" style="margin:2px">Log out     </button></a>
+
+    </div>
+        <div style="margin-top:15px">
+            <h2 align="center" padding="20px"> PHYSICAL STORE SELL INFORMATION</h2>
+        </div>
+        <br>
+        <table align="center" class="table table-hover"  style="width: 40%">
                 <tr>
-                    <th align='left'>ITEMS SOLD IN CURRENT DAYS</th>
-                    <td>: {{$list['pday']}}</td>
+                    <th scope="col">ITEMS SOLD IN CURRENT DAYS</th>
+                    <th scope="col"> {{$list['pday']}}</th>
                 </tr>
                 <tr>
-                    <th align='left'>LAST 7 DAYS SOLD ITEMS</th>
-                    <td>: {{$list['p7day']}}</td>
+                    <th scope="col">LAST 7 DAYS SOLD ITEMS</th>
+                    <th scope="col"> {{$list['p7day']}}</th>
                 </tr>
                 <tr>
-                    <th align='left'>MOST SOLD ITEMS</th>
-                    <td>: {{$list['bestProduct']}}</td>
+                    <th scope="col">MOST SOLD ITEMS</th>
+                    <th scope="col"> {{$list['bestProduct']}}</th>
                 </tr>
                 <tr>
-                    <th align='left'>AVERAGE SALE ON CURRENT MONTH</th>
-                    <td>: {{$list['avg']}}</td>
+                    <th scope="col">AVERAGE SALE ON CURRENT MONTH</th>
+                    <th scope="col"> {{$list['avg']}}</th>
                 </tr>
                 <tr>
                     <td align="center" colspan="2"><br>
-                    <a href="{{route('sales.salesLog')}}" ><button  type="button" class="btn btn-default" >View Sales Log</button></a>
+                    <a href="{{route('sales.salesLog')}}" ><button class="btn btn-success" style="margin:2px">View Sales Log</button></a>
                     </td>
 				</tr>
 			</table>
@@ -37,7 +53,7 @@
             @foreach ($errors->all() as $err)
                 <p style="color:red">{{$err}}</p>
             @endforeach
-
+            <form method="post" enctype="multipart/form-data">
             <h2 align="center">VALUE ENTRY</h2><br>
             <table align="center">
                 <tr>
@@ -85,7 +101,7 @@
                 </tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" name="submit" value="save"></td>
+					<td><input class="btn btn-success" style="margin:2px" type="submit" name="submit" value="save"></td>
 				</tr>
 			</table>
 
