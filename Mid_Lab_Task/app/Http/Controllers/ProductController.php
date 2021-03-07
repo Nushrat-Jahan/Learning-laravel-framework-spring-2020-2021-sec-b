@@ -7,6 +7,7 @@ use App\Vendors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\EditRequest;
 
 
 
@@ -141,7 +142,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $req)
+    public function update($id, EditRequest $req)
     {
         $list= Product::find($id);
         $list->product_name = $req->pname;

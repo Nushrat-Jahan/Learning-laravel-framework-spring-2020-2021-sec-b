@@ -33,7 +33,6 @@
                 <a href="{{route('product.upcoming',['sort'=> request('sort'),'sortType'=>'desc'])}}">
                     <button class="btn btn-primary" style="margin:2px">Dessending</button></a>
             @endif
-            <form>
                 <br>
                 <table align="center" class="table table-striped table-condensed table-hover"  style="width: 70%">
                     <tr>
@@ -53,14 +52,12 @@
                         <td>{{$product['unit_price']}}</td>
                         <td>{{$product['quantity']}}</td>
                         <td>{{$product['date_added']->format('d-m-Y')}}</td>
-                        <td><button class="btn btn-warning">Edit</button>
+                        <td><a href="{{route('product.edit',['id'=>$product['id']])}}"><button class="btn btn-warning">Edit</button></a>
                             <button class="btn btn-danger">Delete</button>
                             <button class="btn btn-success">View Details</button></td>
                     </tr>
                         @endforeach
                 </table>
-
-            </form>
             {{$list->links()}}
         </div>
 </body>
