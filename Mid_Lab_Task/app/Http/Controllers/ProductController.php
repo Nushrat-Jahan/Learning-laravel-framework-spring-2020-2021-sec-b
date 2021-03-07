@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AddProductRequest;
 
 
+
 class ProductController extends Controller
 {
     /**
@@ -21,11 +22,25 @@ class ProductController extends Controller
         $list = $this->productCount();
         return view('product.index')->with('list',$list);
     }
-    public function existing()
+    public function existing(Request $req)
     {
-        //$list = $this->productExist();
-        //return view('product.existing')->with('list',$list);
-        return view('product.existing');
+        $list =new Product();
+        $list = $list->where('status','existing');
+        if($req->sort){
+            if($req->sortType){
+                $list = $list->orderBy($req->sort,$req->sortType);
+            }
+            else{
+                $list = $list->orderBy($req->sort,'asc');
+            }
+            $list = $list->paginate(20)->appends(['sort'=>$req->sort]);
+        }
+        else{
+            $list = $list->paginate(20);
+
+        }
+        return view('product.existing')->with('list',$list);
+
     }
     public function upcoming()
     {
@@ -62,7 +77,6 @@ class ProductController extends Controller
     }
     public function productExist()
     {
-        $data = Product::where('status','=','existing')->all();
         return $data;
     }
     /**

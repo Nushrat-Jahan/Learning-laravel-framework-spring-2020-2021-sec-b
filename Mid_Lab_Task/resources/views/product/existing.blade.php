@@ -24,5 +24,44 @@
         <div style="margin-top:15px">
             <h2 align="center" padding="20px">EXITING PRODUCT INFORMATION</h2><br><br>
         </div>
+        <div align="center">
+            @if(request('sort'))
+
+                <h4>Sort By:</h4>
+                <a href="{{route('product.existing',['sort'=> request('sort'),'sortType'=>'asc'])}}">
+                    <button class="btn btn-primary" style="margin:2px">Assending</button></a>
+                <a href="{{route('product.existing',['sort'=> request('sort'),'sortType'=>'desc'])}}">
+                    <button class="btn btn-primary" style="margin:2px">Dessending</button></a>
+            @endif
+            <form>
+                <br>
+                <table align="center" class="table table-striped table-condensed table-hover"  style="width: 70%">
+                    <tr>
+                    <th scope="col"><a href="{{route('product.existing',['sort'=>'id','sortType'=>request('sortType')])}}">PRODUCT ID</th>
+                    <th scope="col"><a href="{{route('product.existing',['sort'=>'product_name','sortType'=>request('sortType')])}}">PRODUCT NAME</th>
+                    <th scope="col"><a href="{{route('product.existing',['sort'=>'category','sortType'=>request('sortType')])}}">CATEGORY</th>
+                    <th scope="col"><a href="{{route('product.existing',['sort'=>'unit_price','sortType'=>request('sortType')])}}">UNIT PRICE</th>
+                    <th scope="col"> <a href="{{route('product.existing',['sort'=>'quantity','sortType'=>request('sortType')])}}">QUANTITY</a> </th>
+                    <th scope="col">DATE ADDED</th>
+                    <th scope="col">ACTION</th>
+                    </tr>
+                    @foreach ($list as $product)
+                    <tr>
+                        <td>{{$product['id']}}</td>
+                        <td>{{$product['product_name']}}</td>
+                        <td>{{$product['category']}}</td>
+                        <td>{{$product['unit_price']}}</td>
+                        <td>{{$product['quantity']}}</td>
+                        <td>{{$product['date_added']->format('d-m-Y')}}</td>
+                        <td><button class="btn btn-warning">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-success">View Details</button></td>
+                    </tr>
+                        @endforeach
+                </table>
+
+            </form>
+            {{$list->links()}}
+        </div>
 </body>
 </html>
