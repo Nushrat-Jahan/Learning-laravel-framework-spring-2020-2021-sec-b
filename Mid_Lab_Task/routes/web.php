@@ -44,12 +44,14 @@ Route::get('system/product_management/existing_products','ProductController@exis
 Route::get('system/product_management/existing_products/edit/{id}','ProductController@edit')->name('product.edit');
 Route::post('system/product_management/existing_products/edit/{id}','ProductController@update');
 Route::get('/system/product_management/existing_products/delete/{id}','ProductController@destroy')->name('product.delete');
-//Route::get('system/product_management/existing_products/delete/{id}','ProductController@existingDelete')->name('product.existing.delete');
+
 //Route::get('system/product_management/product/{product_id}/vendor_details/{vendor_id}','ProductController@existingDetails')->name('product.details');
 
 Route::get('system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
 Route::get('system/product_management/upcoming_products/edit/{id}','ProductController@edit')->name('product.edit');
 Route::post('system/product_management/upcoming_products/edit/{id}','ProductController@update');
+Route::get('/system/product_management/upcoming_products/delete/{id}','ProductController@destroy')->name('product.delete');
+
 Route::get('system/product_management/add_products','ProductController@add')->name('product.add');
 Route::post('system/product_management/add_products','ProductController@addVerify');
 

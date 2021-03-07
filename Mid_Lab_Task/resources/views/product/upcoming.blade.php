@@ -22,9 +22,22 @@
 
     </div>
         <div style="margin-top:15px">
-            <h2 align="center" padding="20px">Upcoming PRODUCT INFORMATION</h2><br><br>
+            <script>
+                function check(){
+                   if(confirm("Are You Sure to delete this product?"))
+                   {
+                       return true;
+                   }
+                   else
+                   {
+                       return false;
+                   }
+                 }
+            </script>
+            <h2 align="center" padding="20px">UPCOMING PRODUCT INFORMATION</h2><br><br>
         </div>
         <div align="center">
+            <p style="color:red">{{session('delete')}}</p>
             @if(request('sort'))
 
                 <h4>Sort By:</h4>
@@ -41,7 +54,7 @@
                     <th scope="col"><a href="{{route('product.upcoming',['sort'=>'category','sortType'=>request('sortType')])}}">CATEGORY</th>
                     <th scope="col"><a href="{{route('product.upcoming',['sort'=>'unit_price','sortType'=>request('sortType')])}}">UNIT PRICE</th>
                     <th scope="col"> <a href="{{route('product.upcoming',['sort'=>'quantity','sortType'=>request('sortType')])}}">QUANTITY</a> </th>
-                    <th scope="col">DATE ADDED</th>
+                    <th scope="col"><a href="{{route('product.upcoming',['sort'=>'date_added','sortType'=>request('sortType')])}}">DATE ADDED</th>
                     <th scope="col">ACTION</th>
                     </tr>
                     @foreach ($list as $product)
@@ -53,7 +66,7 @@
                         <td>{{$product['quantity']}}</td>
                         <td>{{$product['date_added']->format('d-m-Y')}}</td>
                         <td><a href="{{route('product.edit',['id'=>$product['id']])}}"><button class="btn btn-warning">Edit</button></a>
-                            <button class="btn btn-danger">Delete</button>
+                            <a onclick="return check()" class='delete' href="{{route('product.delete',['id'=> $product['id']])}}"><button class="btn btn-danger">Delete</button></a>
                             <button class="btn btn-success">View Details</button></td>
                     </tr>
                         @endforeach

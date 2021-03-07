@@ -168,9 +168,9 @@ class ProductController extends Controller
         $list = Product::find($id);
         if($list)
         {
-            $req->session()->flash('delete','PRODUCT ID '.$list->id.' DELETED');
+            $req->session()->flash('delete','PRODUCT ID '.$list->id.' DELETED SUCESSFULLY');
             $list->delete();
         }
-        return redirect()->route('product.existing');
+        return Back();
     }
 }
