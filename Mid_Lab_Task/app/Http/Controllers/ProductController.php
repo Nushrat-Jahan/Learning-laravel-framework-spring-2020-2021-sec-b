@@ -166,11 +166,28 @@ class ProductController extends Controller
     public function destroy(Request $req,$id)
     {
         $list = Product::find($id);
-        if($list)
-        {
-            $req->session()->flash('delete','PRODUCT ID '.$list->id.' DELETED SUCESSFULLY');
-            $list->delete();
-        }
+        $req->session()->flash('delete','PRODUCT ID '.$list->id.' DELETED SUCESSFULLY');
+        $list->delete();
         return Back();
     }
+    public function details(Request $req, $product_id, $vendor_id)
+    {
+        $product = Product::where('id',$product_id)
+                         ->where('vendor_id',$vendor_id)
+                         ->first();
+        $vendor = Vendors::find($vendor_id);
+        //print_r($product);
+        if($vendor && $product)
+        {
+
+            return view('product.details')->with('product',$product)->with('vendor',$vendor)->with('nf',"");
+        }
+        else
+        {
+            return view('product.details')->with('nf','1');
+
+        }
+
+    }
+
 }

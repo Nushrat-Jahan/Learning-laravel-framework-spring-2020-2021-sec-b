@@ -68,7 +68,7 @@
                         <td>{{$product['date_added']->format('d-m-Y')}}</td>
                         <td><a href="{{route('product.edit',['id'=>$product['id']])}}"><button class="btn btn-warning">Edit</button></a>
                             <a onclick="return check()" class='delete' href="{{route('product.delete',['id'=> $product['id']])}}"><button class="btn btn-danger">Delete</button></a>
-                            <button class="btn btn-success">View Details</button></td>
+                            <a href="{{route('product.details',['product_id'=> $product['id'],'vendor_id'=> $product['vendor_id']])}}"><button class="btn btn-success">View Details</button></a></td>
                     </tr>
                         @endforeach
                 </table>
