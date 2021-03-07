@@ -21,10 +21,24 @@
         <a href="{{route('logout')}}"     ><button class="btn btn-danger" style="margin:2px">Log out     </button></a>
 
     </div>
+    <script>
+        function check(){
+           if(confirm("Are You Sure to delete this product?"))
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+         }
+    </script>
         <div style="margin-top:15px">
             <h2 align="center" padding="20px">EXITING PRODUCT INFORMATION</h2><br><br>
+
         </div>
         <div align="center">
+            <p style="color:red">{{session('delete')}}</p>
             @if(request('sort'))
 
                 <h4>Sort By:</h4>
@@ -41,7 +55,7 @@
                     <th scope="col"><a href="{{route('product.existing',['sort'=>'category','sortType'=>request('sortType')])}}">CATEGORY</th>
                     <th scope="col"><a href="{{route('product.existing',['sort'=>'unit_price','sortType'=>request('sortType')])}}">UNIT PRICE</th>
                     <th scope="col"> <a href="{{route('product.existing',['sort'=>'quantity','sortType'=>request('sortType')])}}">QUANTITY</a> </th>
-                    <th scope="col">DATE ADDED</th>
+                    <th scope="col"><a href="{{route('product.existing',['sort'=>'date_added','sortType'=>request('sortType')])}}">DATE ADDED</a></th>
                     <th scope="col">ACTION</th>
                     </tr>
                     @foreach ($list as $product)
@@ -53,7 +67,7 @@
                         <td>{{$product['quantity']}}</td>
                         <td>{{$product['date_added']->format('d-m-Y')}}</td>
                         <td><a href="{{route('product.edit',['id'=>$product['id']])}}"><button class="btn btn-warning">Edit</button></a>
-                            <button class="btn btn-danger">Delete</button>
+                            <a onclick="return check()" class='delete' href="{{route('product.delete',['id'=> $product['id']])}}"><button class="btn btn-danger">Delete</button></a>
                             <button class="btn btn-success">View Details</button></td>
                     </tr>
                         @endforeach

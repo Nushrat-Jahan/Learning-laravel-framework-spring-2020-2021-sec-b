@@ -163,8 +163,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $req,$id)
     {
-        //
+        $list = Product::find($id);
+        if($list)
+        {
+            $req->session()->flash('delete','PRODUCT ID '.$list->id.' DELETED');
+            $list->delete();
+        }
+        return redirect()->route('product.existing');
     }
 }

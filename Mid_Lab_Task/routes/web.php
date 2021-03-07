@@ -43,6 +43,7 @@ Auth::routes();
 Route::get('system/product_management/existing_products','ProductController@existing')->name('product.existing');
 Route::get('system/product_management/existing_products/edit/{id}','ProductController@edit')->name('product.edit');
 Route::post('system/product_management/existing_products/edit/{id}','ProductController@update');
+Route::get('/system/product_management/existing_products/delete/{id}','ProductController@destroy')->name('product.delete');
 //Route::get('system/product_management/existing_products/delete/{id}','ProductController@existingDelete')->name('product.existing.delete');
 //Route::get('system/product_management/product/{product_id}/vendor_details/{vendor_id}','ProductController@existingDetails')->name('product.details');
 
