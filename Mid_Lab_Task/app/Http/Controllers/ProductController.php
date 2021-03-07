@@ -90,10 +90,6 @@ class ProductController extends Controller
         $productdata = ['existing'=> $existing, 'upcoming' => $upcoming];
         return $productdata;
     }
-    public function productExist()
-    {
-        return $data;
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -132,9 +128,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $list = Product::find($id);
+        return view('product.edit')->with('list',$list);
     }
 
     /**
@@ -144,9 +141,19 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update($id,Request $req)
     {
-        //
+        $list= Product::find($id);
+        $list->product_name = $req->pname;
+        $list->category = $req->category;
+        $list->unit_price = $req->unitPrice;
+        $list->quantity = $req->quantity;
+        $list->status = $req->status;
+
+        $list->save();
+        $req->session()->flash('msg','Sucessfully Updated Product ID: '.$id);
+        return Back();
+        //return redirect()->route('product.edit',['id'=> $req->id]);
     }
 
     /**
