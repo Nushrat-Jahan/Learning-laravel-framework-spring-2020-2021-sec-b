@@ -19,4 +19,5 @@ Route::get('/login','LoginController@index');
 Route::post('/login','LoginController@verify');
 
 Route::get('check','Check@index');
+Route::get('/teacher','TeacherController@index')->name('teacher');
 
