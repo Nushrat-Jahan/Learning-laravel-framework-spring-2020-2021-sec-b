@@ -44,13 +44,7 @@ Profile Page
                     @else
                     {{asset('images/dummy.png')}}
                     @endif" alt="" class="propic">
-                    <div style="vertical-align: bottom;" >
-                        <form method="POST" action="" enctype= "multipart/form-data">
-                            @csrf
-                            <input type="file" name="profile_picture" id="">
-                            <button type="submit" class="btn btn-info">Upload</button>
-                        </form>
-                    </div>
+
                 </td>
             </tr>
             <tr style="font-size:20px;">
