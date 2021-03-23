@@ -25,14 +25,14 @@ Teacher Home
 @endsection
 
 @section('container')
-    {{--<h1>This is the Main Body</h1>--}}
-    <h2 align="center" style="padding:2%">{{$course->name}}'s COURSE DETAILS</h2>
-    div align="center">
+    {{--<h1>This is the Main Body</h1>---}}
+    <h2 align="center" style="padding:2%">{{$course->cname}}'s COURSE DETAILS</h2>
+    <div align="center">
         <br>
         <table align="center" class="table table-striped table-condensed table-hover"  style="width: 70%">
             <tr style="font-size:20px;">
                 <th scope="col">COURSE NAME</th>
-                <th scope="col">{{$course->name}}</th>
+               <th scope="col">{{$course->cname}}</th>
             </tr>
             <tr>
                 <th scope="col">COURSE ID</th>

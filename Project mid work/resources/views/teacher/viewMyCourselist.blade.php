@@ -32,17 +32,16 @@ Teacher Home
         <thead>
             <tr>
                 @php
-                if($sortType=='asc') {$sortType='desc';}
-                else
-                {$sortType='asc';}
+                if($order=='asc') {$order='desc';}
+                else {$order='asc';}
                 @endphp
 
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'course_id','sortType'=>$sortType,])}}">COURSE ID @if(request('sort')=='course_id') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'name','sortType'=>$sortType,])}}">COURSE NAME @if(request('sort')=='name') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'credits','sortType'=>$sortType,])}}">COURSE CREDIT @if(request('sort')=='credits') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'dname','sortType'=>$sortType,])}}">DEPARTMENT NAME @if(request('sort')=='dname') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'created_at','sortType'=>$sortType,])}}">CREATED AT @if(request('sort')=='created_at') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
-                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'status','sortType'=>$sortType,])}}">STATUS @if(request('sort')=='status') @if(request('sortType')=='asc') &uarr;  @elseif(request('sortType')=='desc') &darr; @endif  @endif</a></th>
+                <th>@sortablelink('course_id')</th>
+                <th>@sortablelink('name')</th>
+                <th>@sortablelink('credits')</th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'dname','order'=>$order,])}}">DEPARTMENT NAME</th>
+                <th>@sortablelink('created_at')</th>
+                <th><a href="{{route('teacher.viewMyCourselist',['sort'=>'status','order'=>$order,])}}">STATUS</th>
                 <th>ACTION</th>
             </tr>
         </thead>
@@ -59,11 +58,12 @@ Teacher Home
                 @else
                 <td style="color:green"><b>{{$list->status}}</b></td>
                 @endif
-                <td><a href="{{route('teacher.courseDetails',['course_id'=>$list->course_id,])}}"><button class="btn">Details</button></a></td>
+                <td><a href="{{route('teacher.courseDetails',['course_id'=>$list->course_id,])}}">
+                    <button class="btn">Details</button></a></td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <div style="display:flex;justify-content:center;" >{{$course->links()}}</div>
+    <div style="display:flex;justify-content:center;" >{{$course->appends(request()->input())->links()}}</div>
 
 @endsection
