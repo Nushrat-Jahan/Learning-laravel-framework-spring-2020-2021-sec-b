@@ -65,16 +65,23 @@ Route::middleware(['sessionVerify'])->group(function () {
 
     //------Start of Teacher Part
 
+    //Teacher home page
     Route::get('teacher','TeacherController@index')->name('teacher');
+
+    //Teacher Profile view edit update
     Route::get('teacher/profile','TeacherController@profile')->name('teacher.profile');
     Route::get('teacher/profile/edit','TeacherController@edit')->name('teacher.edit');
     Route::post('teacher/profile/edit','TeacherController@profileUpdate');
-    Route::get('teacher/student','TeacherController@viewStudent')->name('teacher.viewStudent');
 
-    Route::get('teacher/course','CourseController@teacherCourselist')->name('teacher.viewCourselist');
-    Route::get('teacher/mycourse','CourseController@teacherCourse')->name('teacher.viewMyCourselist');
+    //Teacher Student view
+    Route::get('teacher/student','TeacherStudentController@Studentlist')->name('teacher.viewStudent');
 
-    Route::get('teacher/course/details/{course_id}','CourseController@courseDetails')->name('teacher.courseDetails');
+    //Teacher Course view
+    Route::get('teacher/course','TeacherCourseController@teacherCourselist')->name('teacher.viewCourselist');
+    Route::get('teacher/mycourse','TeacherCourseController@teacherCourse')->name('teacher.viewMyCourselist');
+
+    Route::get('teacher/course/details/{course_id}','TeacherCourseController@courseDetails')->name('teacher.courseDetails');
+    Route::get('teacher/course/info/{course_id}','TeacherCourseController@courseInfo')->name('teacher.courseInfo');
 
 
 

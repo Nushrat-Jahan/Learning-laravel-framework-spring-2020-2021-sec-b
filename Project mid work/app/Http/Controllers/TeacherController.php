@@ -70,17 +70,5 @@ class TeacherController extends Controller
 
     }
 
-    public function viewStudent(Request $request)
-    {
-        $teacher = Teacher::where('username',$request->session()->get('username'))
-                    ->first();
-        $teacherCourse = TeacherCourse::where('teacher_id',$teacher->teacher_id)
-                                       ->get();
-
-        $course = Course::all();
-        $student = Student::all();
-        return view('teacher.viewStudent',compact('teacher','course','teacherCourse'));
-    }
-
 
 }

@@ -25,8 +25,7 @@ Teacher Home
 @endsection
 
 @section('container')
-    {{--<h1>This is the Main Body</h1>---}}
-    <h2 align="center" style="padding:2%">{{$teacher->name}}'s COURSE DETAILS</h2>
+    <h2 align="center" style="padding:2%">INFO OF COURSE ID <span style="color:red">{{$course->course_id}}</span></h2>
     <div align="center">
         <br>
         <table align="center" class="table table-striped table-condensed table-hover"  style="width: 70%">
@@ -36,7 +35,7 @@ Teacher Home
             </tr>
             <tr>
                 <th scope="col">COURSE ID</th>
-                <th scope="col">{{$course->course_id}}</th>
+                <th>{{$course->course_id}}</th>
             </tr>
             <tr>
                 <th scope="col">COURSE CREDIT</th>
@@ -50,6 +49,7 @@ Teacher Home
                 <th scope="col">SUBJECT NAME</th>
                 <th scope="col">{{$course->sname}}</th>
             </tr>
+                <th scope="col">
             <tr>
                 <th scope="col">SUBJECT PREREQUISITE</th>
                 <th scope="col">{{$course->prerequisite}}</th>
@@ -63,26 +63,12 @@ Teacher Home
                 <th scope="col">{{$course->semester}}</th>
             </tr>
             <tr>
-                <th scope="col">COURSE STATUS</th>
-                @if($course->status=='Completed')
-                <th scope="col" style="color:#D50000">{{$course->status}}</th>
-                @else
-                <th scope="col" style="color:green">{{$course->status}}</th>
-                @endif
-            </tr>
-            <tr>
                 <th scope="col">CREATED AT</th>
                 <th scope="col">{{$course->created_at}}</th>
             </tr>
         </table>
-            <a href="{{route('teacher')}}" align="center">
-                <button class="btn btn-success" style="margin:5px">View Student list</button></a>
-            <a href="{{route('teacher')}}" align="center">
-                <button class="btn btn-success" style="margin:5px">Grade Report</button></a>
-            <a href="{{route('teacher')}}" align="center">
-                <button class="btn btn-success" style="margin:5px">Attendence</button></a>
-            <a href="{{route('teacher')}}" align="center">
-                <button class="btn btn-success" style="margin:5px">Notes</button></a>
+            <a href="{{route('teacher.viewCourselist')}}" align="center">
+            <button class="btn btn-success" style="margin:5px">Back</button></a>
         {{session('msg')}}
     </div>
 

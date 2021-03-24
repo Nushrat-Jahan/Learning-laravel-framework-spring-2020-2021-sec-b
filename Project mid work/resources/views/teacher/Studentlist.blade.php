@@ -5,7 +5,6 @@ Teacher Home
 @endsection
 
 @section('extraCss')
-<link rel="stylesheet" href="{{asset('css/teacher/table.css')}}">
 
 @endsection
 
@@ -25,29 +24,28 @@ Teacher Home
 @endsection
 
 @section('container')
-    <h2 align="center" style="padding:2%">ALL COURSE LIST</h2>
-
+    <h2 align="center" style="padding:2%">Welcome  <span style="color:#D50000"><b>{{$teacher->username}}</b></span> It is view student page</h2>
     <table class="table tableCustom" align="center">
         <thead>
             <tr>
-                <th>@sortablelink('course_id')</th>
+                <th>@sortablelink('student_id')</th>
                 <th>@sortablelink('name')</th>
-                <th>@sortablelink('credits')</th>
-                <th>Department Name</th>
+                <th>@sortablelink('credits_completed')</th>
+                <th>@sortablelink('status')</th>
                 <th>@sortablelink('created_at')</th>
                 <th>ACTION</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($course as $list)
+            @foreach ($student as $list)
             <tr>
-                <td>{{$list->course_id}}</td>
+                <td>{{$list->student_id}}</td>
                 <td>{{$list->name}}</td>
-                <td>{{$list->credits}}</td>
+                <td>{{$list->credits_completed}}</td>
                 <td>{{$list->dname}}</td>
+                <td>{{$list->status}}</td>
                 <td>{{$list->created_at}}</td>
-                <td><a href="{{route('teacher.courseInfo',['course_id'=>$list->course_id,])}}">
-                    <button class="btn">Details</button></a></td>
+                <td><button class="btn">Details</button></td>
             </tr>
 
             @endforeach

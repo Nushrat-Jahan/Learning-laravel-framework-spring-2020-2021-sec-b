@@ -68,4 +68,23 @@ class CourseController extends Controller
 
 
     }
+
+    public function courseInfo(Request $request, $course_id)
+    {
+        $teacher = Teacher::where('username',$request->session()->get('username'))
+                            ->first();
+        $course = DB::table('courses','departments', 'subjects')
+                ->join('departments', 'departments.department_id','=','courses.department_id')
+                ->join('subjects', 'subjects.subject_code','=','courses.subject_code')
+                ->SELECT ('courses.course_id', 'departments.name as dname', 'subjects.name as sname',
+                        'courses.subject_code', 'courses.prerequisite', 'courses.semester',
+                        'courses.name as cname','courses.credits', 'courses.created_at')
+                ->where('courses.course_id',$course_id)
+                ->get()[0];
+
+        return view('teacher.courseInfo',compact('teacher','course'));
+
+
+    }
+
 }
