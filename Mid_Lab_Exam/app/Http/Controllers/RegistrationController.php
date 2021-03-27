@@ -24,7 +24,7 @@ class RegistrationController extends Controller
         $user->user_type        = $req->user_type;
         $user->city             = $req->city;
         $user->country          = $req->country;
-        $user->companyname          = $req->companyname;
+        $user->companyname      = $req->companyname;
         $user->save();
         $req->session()->flash('msg','Account created successfully!');
         return redirect()->route('login');
