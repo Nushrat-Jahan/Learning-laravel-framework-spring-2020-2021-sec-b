@@ -25,6 +25,14 @@ class HomeController extends Controller
         return view('home.editprofile',compact('user'));
     }
 
+    public function customerlist(Request $request)
+    {
+
+        $users = User::where('user_type','=','Customer')->get();
+
+        return view('home.customerlist',compact('users'));
+    }
+
     public function updateProfile(UserRequest $request)
     {
         $user = User::where('username',$request->session()->get('username'))
@@ -40,6 +48,14 @@ class HomeController extends Controller
         $request->session()->flash('msg','Profile Updated Sucessfully!');
         return view('home.profile',compact('user'));
 
+    }
+
+    public function delete(Request $request,$id)
+    {
+        $user= User::find($id);
+        $request->session()->flash('DELETED SUCESSFULLY');
+        $user->delete();
+        return Back();
     }
 
 }
