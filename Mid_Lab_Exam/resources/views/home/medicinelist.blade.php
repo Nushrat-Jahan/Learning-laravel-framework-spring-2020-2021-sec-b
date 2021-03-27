@@ -10,7 +10,7 @@
     <title>Home</title>
 </head>
 <body>
-    <h2 align="center" style="padding:2%">ALL CUSTOMER LIST</h2>
+    <h2 align="center" style="padding:2%">ALL MEDICINE LIST</h2>
 
     <table class="table tableCustom" align="center">
         <thead>
@@ -24,21 +24,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+        @foreach ($users as $user)
             <tr>
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->category}}</td>
                 <td>{{$user->type}}</td>
                 <td>{{$user->created_at}}</td>
-                <td><a href="#"><button class="btn btn-warning">Edit</button></a>
-                    <a href="#"><button class="btn btn-danger">Delete</button></a>
-                    <a href="#"><button class="btn btn-success">View Details</button></a></td>
-            </tr>
-
-            @endforeach
-        </tbody>
-    </table>
+                <td><a href="{{route('home.editmedicine',['id'=> $user->id])}}"><button class="btn btn-warning">Edit</button></a>
+                    <a href="{{route('home.deletemedicine',['id'=> $user->id])}}"><button class="btn btn-danger">Delete</button></a>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <span align="center"><a href="{{route('home.addmedicine')}}"><button class="btn btn-success" >ADD</button></a></span>
 </body>
 </html>
 

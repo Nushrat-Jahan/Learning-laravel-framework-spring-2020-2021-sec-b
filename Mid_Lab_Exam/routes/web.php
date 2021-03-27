@@ -34,8 +34,20 @@ Route::group(["middleware" => "sess"],function () {
     Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
     Route::get('/home/editprofile', 'HomeController@editprofile')->name('home.editprofile');
     Route::post('/home/editprofile', 'HomeController@updateProfile');
-    Route::get('/home/customerlist', 'HomeController@customerlist')->name('home.customerlist');
-    Route::get('/home/medicinelist', 'HomeController@medicinelist')->name('home. medicinelist');
-    Route::get('/home/customer/delete/{id}','HomeController@delete')->name('home.delete');
+    Route::get('/home/medicinelist', 'HomeController@medicinelist')->name('home.medicinelist');
+
+    Route::group(["middleware"=>"admincheck"],function(){
+
+        Route::get('/home/customerlist', 'HomeController@customerlist')->name('home.customerlist');
+        Route::get('/home/customer/delete/{id}','HomeController@delete')->name('home.delete');
+        Route::get('/home/addmedicine', 'HomeController@addmedicine')->name('home.addmedicine');
+        Route::post('/home/addmedicine', 'HomeController@medicineAdded');
+        Route::get('/home/editmedicine', 'HomeController@editmedicine')->name('home.editmedicine');
+        Route::post('/home/editmedicine', 'HomeController@updatemedicine');
+        Route::get('/home/medicine/delete/{id}','HomeController@deletemedicine')->name('home.deletemedicine');
+    });
+    Route::group(["middleware"=>"customercheck"],function(){
+
+    });
 
 });

@@ -15,7 +15,7 @@ class AdminVerify
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->get('user_type')=='admin'){
+        if($request->session()->get('user_type')=='Admin'){
             return $next($request);
         }
         else{

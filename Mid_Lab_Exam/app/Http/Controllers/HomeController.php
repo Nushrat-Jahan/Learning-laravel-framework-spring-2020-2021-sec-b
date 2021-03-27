@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\MedicineRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -30,7 +32,6 @@ class HomeController extends Controller
     {
 
         $users = User::where('user_type','=','Customer')->get();
-
         return view('home.customerlist',compact('users'));
     }
 
@@ -38,8 +39,47 @@ class HomeController extends Controller
     {
 
         $users = Medicine::get();
-
         return view('home.medicinelist',compact('users'));
+    }
+
+    public function addmedicine(Request $request)
+    {
+        return view('home.addmedicine');
+    }
+
+    public function editmedicine(Request $request)
+    {
+        return view('home.editmedicine');
+    }
+
+    public function updatemedicine(MedicineRequest $request)
+    {
+        $user = new Medicine();
+        $user->name=$request->name;
+        $user->category=$request->category;
+        $user->medicine_type=$request->medicine_type;
+        $user->vendor_name            = $request->vendor_name;
+        $user->price          = $request->price;
+        $user->availability    = $request->availability;
+
+        $user->save();
+        $request->session()->flash('msg','Medicine Updated Sucessfully!');
+        return view('home.editmedicine',compact('user'));
+    }
+
+    public function medicineAdded(MedicineRequest $request,$id)
+    {
+        $user = Medicine::find($id);
+        $user->name=$request->name;
+        $user->category=$request->category;
+        $user->medicine_type=$request->medicine_type;
+        $user->vendor_name            = $request->vendor_name;
+        $user->price          = $request->price;
+        $user->availability    = $request->availability;
+
+        $user->save();
+        $request->session()->flash('msg','Medicine Added Sucessfully!');
+        return view('home.addmedicine',compact('user'));
     }
 
     public function updateProfile(UserRequest $request)
@@ -62,6 +102,14 @@ class HomeController extends Controller
     public function delete(Request $request,$id)
     {
         $user= User::find($id);
+        $request->session()->flash('DELETED SUCESSFULLY');
+        $user->delete();
+        return Back();
+    }
+
+    public function deletemedicine(Request $request,$id)
+    {
+        $user= Medicine::find($id);
         $request->session()->flash('DELETED SUCESSFULLY');
         $user->delete();
         return Back();

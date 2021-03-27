@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerCartTable extends Migration
+class CreateCustomersCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCustomerCartTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_cart', function (Blueprint $table) {
+        Schema::create('customers_cart', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('username',20)->unique();
-            $table->integer('quantity',10);
+            $table->foreign('username')->references('username')->on('users');
+            $table->float('quantity',10);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCustomerCartTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_cart');
+        Schema::dropIfExists('customers_cart');
     }
 }

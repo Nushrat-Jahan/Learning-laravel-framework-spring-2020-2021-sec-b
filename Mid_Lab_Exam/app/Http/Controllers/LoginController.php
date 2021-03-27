@@ -25,11 +25,12 @@ class LoginController extends Controller
 
         }
         elseif(count($user)>0){
-            $user = User::where('username',$req->session()->get('username'))
+            $user = User::where('username',$req->username)
                     ->first();
             $req->session()->put('username', $req->username);
+            $req->session()->put('user_type',$user->user_type);
 
-            return view('home.index');
+            return redirect('/home');
 
         }
         else{

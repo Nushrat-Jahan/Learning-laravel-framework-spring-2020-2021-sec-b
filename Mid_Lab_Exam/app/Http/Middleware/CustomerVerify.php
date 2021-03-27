@@ -15,7 +15,7 @@ class CustomerVerify
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->get('user_type')=='customer'){
+        if($request->session()->get('user_type')=='Customer'){
             return $next($request);
         }
         else{
