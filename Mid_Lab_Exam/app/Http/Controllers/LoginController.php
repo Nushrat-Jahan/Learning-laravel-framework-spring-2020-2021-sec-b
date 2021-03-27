@@ -28,9 +28,8 @@ class LoginController extends Controller
             $user = User::where('username',$req->session()->get('username'))
                     ->first();
             $req->session()->put('username', $req->username);
-            $req->session()->put('user_type', $user->user_type);
-            if($user->user_type=='Admin') return view('home.admin');
-            else return view('home.customer');
+
+            return view('home.index');
 
         }
         else{

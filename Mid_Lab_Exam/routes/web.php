@@ -26,21 +26,13 @@ Route::post('/login', 'LoginController@verify');
 //Logout
 Route::get('/logout', 'LogoutController@index')->name('logout');
 
+Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
+Route::get('/home/editprofile', 'HomeController@editprofile')->name('home.editprofile');
+Route::post('/home/editprofile', 'HomeController@updateProfile');
 
 Route::group(["middleware" => "sess"],function () {
 
-    //Admin
-    Route::group(["middleware" => "admincheck"],function (){
 
-        //Home
-        Route::get('/home', 'HomeController@admin')->name('home.admin');
-    });
-
-    //Customer
-    Route::group(["middleware" => "customercheck"],function (){
-
-        //Home
-        Route::get('/home', 'HomeController@customer')->name('home.customer');
-    });
 
 });

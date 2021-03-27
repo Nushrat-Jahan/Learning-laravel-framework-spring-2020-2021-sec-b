@@ -8,8 +8,7 @@ class SessionVerify
 {
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('username') && $request->session()->has('user_type'))
-        {
+        if($request->session()->has('username')){
             return $next($request);
         }
         else{
