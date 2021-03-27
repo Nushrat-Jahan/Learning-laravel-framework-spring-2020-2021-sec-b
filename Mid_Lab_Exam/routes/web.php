@@ -35,6 +35,7 @@ Route::group(["middleware" => "sess"],function () {
     Route::get('/home/editprofile', 'HomeController@editprofile')->name('home.editprofile');
     Route::post('/home/editprofile', 'HomeController@updateProfile');
     Route::get('/home/customerlist', 'HomeController@customerlist')->name('home.customerlist');
+    Route::get('/home/medicinelist', 'HomeController@medicinelist')->name('home. medicinelist');
     Route::get('/home/customer/delete/{id}','HomeController@delete')->name('home.delete');
 
 });

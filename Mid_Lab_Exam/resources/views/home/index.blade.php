@@ -13,6 +13,7 @@
     <p>Welcome Home</p>
     <a href="{{route('home.profile')}}"><button class="btn btn-success" style="margin:5px">Profile</button>
     <a href="{{route('home.customerlist')}}"><button class="btn btn-success" style="margin:5px">View Customer</button>
+    <a href="{{route('home.medicinelist')}}"><button class="btn btn-success" style="margin:5px">View Customer</button>
     <a href="{{route('logout')}}"     ><button class="btn btn-danger" style="margin:2px">Log out     </button></a>
 </body>
 </html>

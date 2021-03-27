@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Medicine;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,14 @@ class HomeController extends Controller
         $users = User::where('user_type','=','Customer')->get();
 
         return view('home.customerlist',compact('users'));
+    }
+
+    public function medicinelist(Request $request)
+    {
+
+        $users = Medicine::get();
+
+        return view('home.medicinelist',compact('users'));
     }
 
     public function updateProfile(UserRequest $request)
