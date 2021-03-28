@@ -35,6 +35,9 @@ Route::group(["middleware" => "sess"],function () {
     Route::get('/home/editprofile', 'HomeController@editprofile')->name('home.editprofile');
     Route::post('/home/editprofile', 'HomeController@updateProfile');
     Route::get('/home/medicinelist', 'HomeController@medicinelist')->name('home.medicinelist');
+    Route::get('/home/searchmedicine', 'HomeController@searchmedicine')->name('home.searchmedicine');
+    Route::get('/home/action', 'HomeController@action')->name('home.action');
+
 
     Route::group(["middleware"=>"admincheck"],function(){
 
@@ -46,6 +49,7 @@ Route::group(["middleware" => "sess"],function () {
         Route::post('/home/editmedicine', 'HomeController@updatemedicine');
         Route::get('/home/medicine/delete/{id}','HomeController@deletemedicine')->name('home.deletemedicine');
     });
+
     Route::group(["middleware"=>"customercheck"],function(){
 
     });
