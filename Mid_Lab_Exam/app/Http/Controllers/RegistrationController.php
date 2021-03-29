@@ -16,6 +16,7 @@ class RegistrationController extends Controller
 
     public function verify(RegistrationRequest $req){
         $user = new User();
+        $user->user_id = $req->user_id;
         $user->name         = $req->name;
         $user->username         = $req->username;
         $user->password         = $req->password;

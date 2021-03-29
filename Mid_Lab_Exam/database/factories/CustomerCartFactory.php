@@ -6,12 +6,18 @@ use App\CustomerCart;
 use Faker\Generator as Faker;
 
 $factory->define(CustomerCart::class, function (Faker $faker) {
-    $username = App\User::pluck('username')->toArray();
+
+    $user_id = App\User::pluck('user_id')->toArray();
+    $medicine_id = App\Medicine::pluck('medicine_id')->toArray();
+    $quantity = $faker->numberBetween(0,5);
 
     return [
 
-        'username' => $faker->randomElement($username),
-        'quantity' => $faker->numberBetween(0,5),
+        'user_id' => $faker->randomElement($user_id),
+        'medicine_id' => $faker->randomElement($medicine_id),
+        'quantity' => $faker->randomElement($quantity),
+        'total'=>0,
+
     ];
 
 });

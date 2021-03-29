@@ -19,10 +19,14 @@
             <div class="panel-heading">
                 <h2 align="center" style="padding:2%">SEARCH EXPECTED MEDICINE</h2>
             </div>
+            <div align="center">
+                <span style="color:blue"> {{session('msg')}}</span>
+                <span style="color:red"> {{session('delete')}}</span>
                 <div class="panel-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="search" name="search" placeholder="Search...">
                     </div>
+                </div>
 
     <div align="center">
     <table class="table tableCustom" align="center">

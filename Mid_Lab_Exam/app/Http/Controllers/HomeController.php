@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomerCart;
 use App\Http\Requests\MedicineRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,64 +31,11 @@ class HomeController extends Controller
         return view('home.editprofile', compact('user'));
     }
 
-    public function customerlist(Request $request)
-    {
-
-        $users = User::where('user_type', '=', 'Customer')->get();
-        return view('home.customerlist', compact('users'));
-    }
-
-    public function medicinelist(Request $request)
-    {
-
-        $users = Medicine::get();
-        return view('home.medicinelist', compact('users'));
-    }
-
-    public function addmedicine(Request $request)
-    {
-        return view('home.addmedicine');
-    }
-
-    public function editmedicine(Request $request)
-    {
-        return view('home.editmedicine');
-    }
-
-    public function updatemedicine(MedicineRequest $request)
-    {
-        $user = new Medicine();
-        $user->name = $request->name;
-        $user->category = $request->category;
-        $user->medicine_type = $request->medicine_type;
-        $user->vendor_name            = $request->vendor_name;
-        $user->price          = $request->price;
-        $user->availability    = $request->availability;
-
-        $user->save();
-        $request->session()->flash('msg', 'Medicine Updated Sucessfully!');
-        return view('home.editmedicine', compact('user'));
-    }
-
-    public function medicineAdded(MedicineRequest $request, $id)
-    {
-        $user = Medicine::find($id);
-        $user->name = $request->name;
-        $user->category = $request->category;
-        $user->medicine_type = $request->medicine_type;
-        $user->vendor_name            = $request->vendor_name;
-        $user->price          = $request->price;
-        $user->availability    = $request->availability;
-
-        $user->save();
-        $request->session()->flash('msg', 'Medicine Added Sucessfully!');
-        return view('home.addmedicine', compact('user'));
-    }
 
     public function updateProfile(UserRequest $request)
     {
         $user = User::where('username', $request->session()->get('username'))
-            ->first();
+        ->first();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->address = $request->address;
@@ -108,6 +56,62 @@ class HomeController extends Controller
         return Back();
     }
 
+    public function customerlist(Request $request)
+    {
+
+        $users = User::where('user_type', '=', 'Customer')->get();
+        return view('home.customerlist', compact('users'));
+    }
+
+    public function medicinelist(Request $request)
+    {
+
+        $users = Medicine::get();
+        return view('home.medicinelist', compact('users'));
+    }
+
+    public function addmedicine(Request $request)
+    {
+        return view('home.addmedicine');
+    }
+
+
+
+    public function medicineAdded(MedicineRequest $request)
+    {
+        $user = new Medicine();
+        $user->name = $request->name;
+        $user->category = $request->category;
+        $user->medicine_type = $request->medicine_type;
+        $user->vendor_name            = $request->vendor_name;
+        $user->price          = $request->price;
+        $user->availability    = $request->availability;
+
+        $user->save();
+        $request->session()->flash('msg', 'Medicine Added Sucessfully!');
+        return view('home.addmedicine', compact('user'));
+    }
+
+    public function editmedicine(Request $request,$id)
+    {
+        $user = Medicine::find($id)->first();
+        return view('home.editmedicine',compact('user'));
+    }
+
+    public function medicineUpdate(MedicineRequest $request, $id)
+    {
+        $user = Medicine::find($id)->first();
+        $user->name = $request->name;
+        $user->category = $request->category;
+        $user->medicine_type = $request->medicine_type;
+        $user->vendor_name            = $request->vendor_name;
+        $user->price          = $request->price;
+        $user->availability    = $request->availability;
+
+        $user->save();
+        $request->session()->flash('msg', 'Medicine Updated Sucessfully!');
+        return Back();
+    }
     public function deletemedicine(Request $request, $id)
     {
         $user = Medicine::find($id);
@@ -151,8 +155,10 @@ class HomeController extends Controller
                     <td>' . $row->medicine_type . '</td>
                     <td>' . $row->price . '</td>
                     <td>' . $row->vendor_name . '</td>
-                    <td> <a href="#"><button class="btn btn-success">Add to cart</button></a>
-                         <a href="#"><button class="btn btn-danger">Remove</button></a></td>
+                    <td> <a href="'.route('home.addtocart',['id'=>$row->medicine_id]).'">
+                            <button class="btn btn-success">Add to cart</button></a>
+                         <a href="'.route('home.removemedicine',['id'=>$row->medicine_id]).'">
+                            <button class="btn btn-danger">Remove</button></a></td>
                     </tr>';
                 }
             }
@@ -167,5 +173,44 @@ class HomeController extends Controller
 
             echo json_encode($data);
         }
+    }
+
+    public function addtocart(Request $request,$id)
+    {
+
+        $user = Medicine::where('medicine_id','=',$id)->first();
+        return view('home.addtocart',compact('user'));
+    }
+
+    public function removemedicine(Request $request, $id)
+    {
+        $medicine = CustomerCart::where('medicine_id','=',$id)->first();
+        $request->session()->flash('delete','REMOVED FROM CART');
+        $medicine->delete();
+        return Back();
+    }
+
+    public function confirmMedicine(Request $request, $id)
+    {
+        $user = User::where('username', $request->session()->get('username'))
+            ->first();
+        $medicine = Medicine::where('medicine_id','=',$id)->first();
+
+        $check = CustomerCart::where('medicine_id','=',$id)->get();
+        if(count($check)>0)
+        {
+            $cart = CustomerCart::where('medicine_id','=',$id)->first();
+        }
+        else
+        {
+            $cart = new CustomerCart();
+        }
+        $cart->user_id = $user->user_id;
+        $cart->medicine_id = $id;
+        $cart->quantity = $request->quantity;
+        $cart->total = $request->quantity*$medicine->price;
+        $cart->save();
+        $request->session()->flash('msg','MEDICINE ADDED TO THE CART TOTAL '.$cart->total.' TAKA');
+        return redirect()->route('home.searchmedicine');
     }
 }

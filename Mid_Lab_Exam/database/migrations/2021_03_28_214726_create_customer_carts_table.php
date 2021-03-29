@@ -15,9 +15,12 @@ class CreateCustomerCartsTable extends Migration
     {
         Schema::create('customer_carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username',20)->unique();
-            $table->foreign('username')->references('username')->on('users');
-            $table->float('quantity',10);
+            $table->string('user_id',10)->unique();
+            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->string('medicine_id',10);
+            $table->foreign('medicine_id')->references('medicine_id')->on('medicines');
+            $table->integer('quantity');
+            $table->integer('total');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateCustomerCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers_cart');
+        Schema::dropIfExists('customer_carts');
     }
 }

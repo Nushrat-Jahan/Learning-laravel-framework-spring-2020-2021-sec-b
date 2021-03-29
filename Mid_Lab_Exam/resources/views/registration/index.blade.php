@@ -13,6 +13,10 @@
 		<fieldset>
 			<table align="center">
                 <tr>
+					<td>User id</td>
+					<td><input type="text" name="user_id" value="{{old('user_id')}}"></td>
+				</tr>
+                <tr>
 					<td>Name</td>
 					<td><input type="text" name="name" value="{{old('name')}}"></td>
 				</tr>

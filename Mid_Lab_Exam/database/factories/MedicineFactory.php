@@ -9,6 +9,7 @@ $factory->define(Medicine::class, function (Faker $faker) {
 
     return [
 
+        'medicine_id' => 'M'.$faker->numberBetween(1000,4000),
         'name' => $faker->name,
         'category'=> $faker->randomElement(['aspirine', 'paracitamol']),
         'medicine_type'=> $faker->randomElement(['solid', 'liquid']),

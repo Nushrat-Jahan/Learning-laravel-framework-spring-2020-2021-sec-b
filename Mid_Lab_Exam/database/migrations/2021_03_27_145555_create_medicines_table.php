@@ -15,11 +15,12 @@ class CreateMedicinesTable extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',20)->unique();
+            $table->string('medicine_id',10)->unique();
+            $table->string('name',20);
             $table->string('category',50);
             $table->string('medicine_type',200);
-            $table->string('vendor_name',50)->unique();
-            $table->string('price',15);
+            $table->string('vendor_name',50);
+            $table->integer('price');
             $table->string('availability',15);
             $table->timestamps();
         });

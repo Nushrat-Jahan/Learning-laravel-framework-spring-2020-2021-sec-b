@@ -51,8 +51,8 @@
 					<td>
                         <select name="availability" id="">
                             <option value="" selected>Select Availability</option>
-                            <option value="available" @if (old('medicine_type')=='available') selected @endif>Available</option>
-                            <option value="not available" @if (old('medicine_type')=='not available') selected @endif>Not available</option>
+                            <option value="available" @if (old('availability')=='available') selected @endif>Available</option>
+                            <option value="not available" @if (old('availability')=='not available') selected @endif>Not available</option>
                         </select>
 				</tr>
 				<tr>
