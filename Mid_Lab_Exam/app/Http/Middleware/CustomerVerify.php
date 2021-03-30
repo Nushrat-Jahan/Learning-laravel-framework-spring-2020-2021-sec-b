@@ -19,7 +19,7 @@ class CustomerVerify
             return $next($request);
         }
         else{
-            $request->session()->flash('msg', 'Customer Section');
+            $request->session()->flash('msg', 'It is customer Section');
             return redirect('/home');
         }
     }

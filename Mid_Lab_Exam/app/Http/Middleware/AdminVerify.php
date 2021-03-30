@@ -19,7 +19,7 @@ class AdminVerify
             return $next($request);
         }
         else{
-            $request->session()->flash('msg', 'Admin Section');
+            $request->session()->flash('msg', 'It is Admin Section');
             return redirect('/home');
         }
     }

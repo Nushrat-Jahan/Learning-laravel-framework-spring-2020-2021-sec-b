@@ -59,7 +59,7 @@
                         </select>
             </h4>
             <p style="color:red" align="center">{{session('msg')}}</p>
-            <span align="center"><a href="#"><button class="btn btn-danger">Confirm Purchase</button></a></span></div>
+            <span align="center"><button class="btn btn-danger">Confirm Purchase</button></span></div>
             </div>
         </div>
     </div>

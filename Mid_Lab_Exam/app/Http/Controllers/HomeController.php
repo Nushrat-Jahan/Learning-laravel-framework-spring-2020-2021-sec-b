@@ -7,6 +7,7 @@ use App\Http\Requests\MedicineRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PurchaseRequest;
 use App\Medicine;
 use Validator;
 use DB;
@@ -116,7 +117,7 @@ class HomeController extends Controller
     public function deletemedicine(Request $request, $id)
     {
         $user = Medicine::find($id);
-        $request->session()->flash('DELETED SUCESSFULLY');
+        $request->session()->flash('delete','DELETED SUCESSFULLY');
         $user->delete();
         return Back();
     }
@@ -243,7 +244,7 @@ class HomeController extends Controller
         }
     }
 
-    public function purchase(Request $request)
+    public function purchase(PurchaseRequest $request)
     {
         $user = User::where('username', $request->session()->get('username'))
                     ->first();
@@ -258,5 +259,36 @@ class HomeController extends Controller
         $request->session()->flash('msg','Purchase request is confirmed');
         return redirect()->route('home.showcart');
     }
+
+    public function confirmRequest(Request $request)
+    {
+        $cart = CustomerCart::get();
+        return view('home.confirmRequest',compact('cart'));
+    }
+
+    public function acceptRequest(Request $request,$uid,$mid)
+    {
+        $cart = CustomerCart::where('user_id','=',$uid)
+                            ->where('medicine_id','=',$mid)
+                            ->first();
+
+        $cart->request = 'confirmed';
+        $cart->save();
+
+        $request->session()->flash('msg','Purchase request is confirmed');
+        return Back();
+    }
+
+    public function denyRequest(Request $request, $uid,$mid)
+    {
+        $cart = CustomerCart::where('user_id','=',$uid)
+        ->where('medicine_id','=',$mid)
+        ->first();
+
+        $request->session()->flash('delete','REMOVED FROM CART');
+        $cart->delete();
+        return Back();
+    }
+
 }
 

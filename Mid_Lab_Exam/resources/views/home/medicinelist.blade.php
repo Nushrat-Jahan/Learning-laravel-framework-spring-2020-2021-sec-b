@@ -17,10 +17,11 @@
             <div class="panel-heading">
                 <h2 align="center" style="padding:2%">ALL MEDICINE LIST</h2>
             </div>
-                <div class="panel-body">
+            <div class="panel-body">
 
 
     <div align="center">
+        <p style="color:red"> {{session('delete')}}</p>
     <table class="table tableCustom" align="center">
         <thead>
             <tr>
