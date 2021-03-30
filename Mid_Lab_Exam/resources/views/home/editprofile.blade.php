@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>User Profile</title>
-</head>
-<body>
+@extends('layout.mini')
+@section('title')
+Edit user profile
+@endsection
+
+@section('section')
     <h2 align="center" style="padding:2%">EDIT YOUR PROFILE <span style="color:#D50000"><b>{{$user->username}}</b></span></h2>
 
     <p style="color:red">{{session('msg')}} </p>
@@ -68,5 +62,4 @@
         </table>
         </form>
     </div>
-</body>
-</html>
+@endsection

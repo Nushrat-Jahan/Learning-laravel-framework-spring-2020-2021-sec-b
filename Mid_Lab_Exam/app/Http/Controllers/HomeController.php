@@ -46,7 +46,7 @@ class HomeController extends Controller
         $user->companyname      = $request->companyname;
 
         $user->save();
-        $request->session()->flash('msg', 'Profile Updated Sucessfully!');
+        $request->session()->flash('update', 'Profile Updated Sucessfully!');
         return view('home.profile', compact('user'));
     }
 

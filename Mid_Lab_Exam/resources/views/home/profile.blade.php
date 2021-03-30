@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>User Profile</title>
-</head>
-<body>
+@extends('layout.mini')
+@section('title')
+User profile
+@endsection
+
+@section('section')
     <h1 align="center">{{$user['username']}}'s profile</h1>
+    <h4 align="center" style="color:red">{{session('update')}}</h4>
     <div align="center">
         <br>
         <table align="center" class="table table-striped table-condensed table-hover"  style="width: 70%">
@@ -65,5 +60,4 @@
     </tr>
 </table>
     </div>
-</body>
-</html>
+@endsection
