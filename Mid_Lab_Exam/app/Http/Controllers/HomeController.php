@@ -21,13 +21,13 @@ class HomeController extends Controller
     public function profile(Request $request)
     {
         $user = User::where('username', $request->session()->get('username'))
-            ->first();
+                    ->first();
         return view('home.profile', compact('user'));
     }
     public function editprofile(Request $request)
     {
         $user = User::where('username', $request->session()->get('username'))
-            ->first();
+                    ->first();
         return view('home.editprofile', compact('user'));
     }
 
@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function updateProfile(UserRequest $request)
     {
         $user = User::where('username', $request->session()->get('username'))
-        ->first();
+                    ->first();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->address = $request->address;
@@ -209,8 +209,37 @@ class HomeController extends Controller
         $cart->medicine_id = $id;
         $cart->quantity = $request->quantity;
         $cart->total = $request->quantity*$medicine->price;
+        $cart->request = 'on hold';
+        $cart->payment_type = 'not selected';
         $cart->save();
         $request->session()->flash('msg','MEDICINE ADDED TO THE CART TOTAL '.$cart->total.' TAKA');
         return redirect()->route('home.searchmedicine');
     }
+
+    public function showcart(Request $request)
+    {
+        $user = User::where('username', $request->session()->get('username'))
+                    ->first();
+        $cart = CustomerCart::where('user_id','=',$user->user_id)->get();
+
+        if(count($cart)>0)
+        {
+            $carts = CustomerCart::join('medicines','medicines.medicine_id','=','customer_carts.medicine_id')
+                        ->SELECT ('customer_carts.medicine_id','medicines.medicine_name','medicines.medicine_type',
+                        'medicines.medicine_price','customer_carts.quantity','customer_carts.total');
+            $total = $carts->sum('total');
+        }
+        else
+        {
+            $request->session()->flash('msg','YOU DO NOT HAVE ANY MEDICINE IN THE CART');
+            return redirect()->route('home.searchmedicine');
+        }
+        return view('home.showcart',compact('user','carts','total'));
+    }
+
+    public function purchase(Request $request)
+    {
+
+    }
 }
+

@@ -15,7 +15,7 @@ $factory->define(Medicine::class, function (Faker $faker) {
         'medicine_type'=> $faker->randomElement(['solid', 'liquid']),
         'vendor_name' => $faker->name,
         'price' => $faker->numberBetween(20,100),
-        'availability'=> $faker->randomElement(['available', 'not available']),
+        'availability'=> 'available',
 
     ];
 });

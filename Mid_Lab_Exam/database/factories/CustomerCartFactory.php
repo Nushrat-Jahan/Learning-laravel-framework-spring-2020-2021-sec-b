@@ -16,6 +16,8 @@ $factory->define(CustomerCart::class, function (Faker $faker) {
         'user_id' => $faker->randomElement($user_id),
         'medicine_id' => $faker->randomElement($medicine_id),
         'quantity' => $faker->randomElement($quantity),
+        'request' => $faker->randomElement(['confirmed', 'pending', 'on hold']),
+        'payment_type' => $faker->randomElement(['cash', 'card']),
         'total'=>0,
 
     ];

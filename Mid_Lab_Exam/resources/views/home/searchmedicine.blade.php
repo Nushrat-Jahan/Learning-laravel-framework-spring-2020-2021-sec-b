@@ -20,8 +20,9 @@
                 <h2 align="center" style="padding:2%">SEARCH EXPECTED MEDICINE</h2>
             </div>
             <div align="center">
-                <span style="color:blue"> {{session('msg')}}</span>
-                <span style="color:red"> {{session('delete')}}</span>
+                <p style="color:blue"> {{session('msg')}}</p>
+                <p style="color:red"> {{session('delete')}}</p>
+                <a href="{{route('home.showcart')}}"><button class="btn btn-success">Show cart</button></a>
                 <div class="panel-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="search" name="search" placeholder="Search...">
