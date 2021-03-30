@@ -40,7 +40,7 @@ Route::group(["middleware" => "sess"],function () {
     Route::get('/home/medicine/addtocart/{id}', 'HomeController@addtocart')->name('home.addtocart');
     Route::post('/home/medicine/addtocart/{id}', 'HomeController@confirmMedicine');
     Route::get('/home/medicine/showcart', 'HomeController@showcart')->name('home.showcart');
-    Route::post('/home/medicine/purchase', 'HomeController@purchase')->name('home.purchase');
+    Route::post('/home/medicine/showcart', 'HomeController@purchase');
 
 
     Route::group(["middleware"=>"admincheck"],function(){

@@ -47,6 +47,9 @@
             @endforeach
             </tbody>
         </table>
+        @foreach ($errors->all() as $err)
+        <p style="color:red" align="center">{{$err}}</p>
+        @endforeach
             <h4>Address : <input type="text" name="address" value="{{old('address')}}"></h4>
             <h4>Payment Type :
                         <select name="payment_type" id="">
@@ -55,6 +58,7 @@
                             <option value="card" @if ($user['payment_type']=='card') selected @endif>Card</option>
                         </select>
             </h4>
+            <p style="color:red" align="center">{{session('msg')}}</p>
             <span align="center"><a href="#"><button class="btn btn-danger">Confirm Purchase</button></a></span></div>
             </div>
         </div>

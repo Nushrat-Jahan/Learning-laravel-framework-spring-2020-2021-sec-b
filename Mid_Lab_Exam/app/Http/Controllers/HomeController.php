@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Medicine;
+use Validator;
 use DB;
 
 class HomeController extends Controller
@@ -222,24 +223,40 @@ class HomeController extends Controller
                     ->first();
         $cart = CustomerCart::where('user_id','=',$user->user_id)->get();
 
+
         if(count($cart)>0)
         {
-            $carts = CustomerCart::join('medicines','medicines.medicine_id','=','customer_carts.medicine_id')
-                        ->SELECT ('customer_carts.medicine_id','medicines.medicine_name','medicines.medicine_type',
-                        'medicines.medicine_price','customer_carts.quantity','customer_carts.total');
+            $carts = DB::table('customer_carts','medicines')
+                        ->join('medicines','medicines.medicine_id','=','customer_carts.medicine_id')
+                        ->SELECT ('customer_carts.medicine_id','medicines.name','medicines.medicine_type',
+                        'medicines.price','customer_carts.quantity','customer_carts.total')
+                        ->where('user_id','=',$user->user_id)
+                        ->get();
+
             $total = $carts->sum('total');
+            return view('home.showcart',compact('user','carts','total'));
         }
         else
         {
             $request->session()->flash('msg','YOU DO NOT HAVE ANY MEDICINE IN THE CART');
             return redirect()->route('home.searchmedicine');
         }
-        return view('home.showcart',compact('user','carts','total'));
     }
 
     public function purchase(Request $request)
     {
+        $user = User::where('username', $request->session()->get('username'))
+                    ->first();
+        $cart = CustomerCart::where('user_id','=',$user->user_id)->get();
+        foreach ($cart as $cart)
+        {
+            $cart->payment_type = $request->payment_type;
+            $cart->request = 'pending';
+            $cart->save();
+        }
 
+        $request->session()->flash('msg','Purchase request is confirmed');
+        return redirect()->route('home.showcart');
     }
 }
 
